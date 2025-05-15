@@ -1,95 +1,50 @@
-# INTUE Sentiment Analysis MCP
+# INTUE Documentation
 
-A sophisticated Model Context Protocol (MCP) for analyzing crypto asset sentiment across social, news, and market data sources.
+![Screenshot 2025-05-14 at 5 43 58 PM](https://github.com/user-attachments/assets/5c8a5251-898a-4224-bb4a-30c01f03980d)
 
-## Overview
+## INTUE Documentation
 
-The Sentiment Analysis MCP integrates multiple data streams to provide a comprehensive view of sentiment across the crypto ecosystem. By processing social media signals, news coverage, and on-chain metrics, this MCP delivers deep insights into market sentiment at both asset-specific and ecosystem-wide levels.
+### Welcome to INTUE
 
-## Installation
+INTUE is the intelligence layer for autonomous trading agents, a comprehensive framework designed for quantitative analysis of cryptocurrency markets using advanced AI protocols and agent-based architecture.
 
-```bash
-npm install @intue/sentiment-analysis-mcp
-Features
+Our platform enables sophisticated signal detection, cross-ecosystem correlation analysis, and autonomous trade execution with unprecedented precision. By leveraging specialized Model Context Protocols (MCPs), INTUE bridges the gap between raw market data and actionable trading intelligence.
 
-Multi-Source Analysis: Combines data from social media, news outlets, and market behavior
-Ecosystem Categorization: Maps sentiment across defined crypto ecosystems
-Temporal Patterns: Detects sentiment shifts over time with configurable time windows
-Sentiment Correlation: Identifies correlations between sentiment and price action
-Anomaly Detection: Flags unusual sentiment patterns that may indicate market movements
-Customizable Weights: Configure the importance of different sentiment signals
+This documentation provides a comprehensive guide to the INTUE ecosystem, from high-level concepts to detailed technical specifications for developers, traders, and researchers looking to harness the power of autonomous trading intelligence.
 
-Usage
-Basic Sentiment Analysis
-javascriptconst { SentimentAnalyzer } = require('@intue/sentiment-analysis-mcp');
-const LunarCrushAdapter = require('@intue/lunarcrush-adapter');
+Whether you're implementing an existing agent, developing custom MCPs, or creating entirely new agents for the marketplace, this documentation will serve as your definitive resource for working with the INTUE platform.\
+\
+Core Concepts
 
-// Initialize with adapters
-const lunarcrush = new LunarCrushAdapter({ apiKey: 'YOUR_API_KEY' });
-const analyzer = new SentimentAnalyzer({
-  adapters: { lunarcrush }
-});
+#### Agent Architecture
 
-// Analyze a specific asset
-async function analyzeBitcoin() {
-  const btcSentiment = await analyzer.analyzeSentiment('bitcoin', { 
-    timeframe: '7d',
-    sources: ['social', 'news']
-  });
-  
-  console.log('Bitcoin sentiment score:', btcSentiment.score);
-  console.log('Sentiment breakdown:', btcSentiment.breakdown);
-  console.log('Sentiment trend:', btcSentiment.trend);
-}
+INTUE agents are autonomous, specialized intelligence modules designed to perform specific market analysis functions. Each agent implements a modular architecture consisting of:
 
-analyzeBitcoin();
-Ecosystem Sentiment Analysis
-javascript// Analyze sentiment across an ecosystem
-async function analyzeAIEcosystem() {
-  const aiEcosystemSentiment = await analyzer.analyzeEcosystemSentiment('ai-agents', {
-    timeframe: '30d',
-    limit: 10 // Top 10 assets in ecosystem
-  });
-  
-  console.log('AI Ecosystem Sentiment:', aiEcosystemSentiment.score);
-  console.log('Leading assets by sentiment:', aiEcosystemSentiment.topAssets);
-  console.log('Sentiment trend:', aiEcosystemSentiment.trend);
-}
+* **Signal Generators**: Specialized algorithms for pattern detection across market data
+* **Decision Engine**: Processing pipeline for signal evaluation and action determination
+* **Execution Framework**: Interface layer for trade execution and position management
+* **Performance Analytics**: Self-evaluation and optimization mechanisms
 
-analyzeAIEcosystem();
-Sentiment vs. Price Correlation
-javascript// Analyze correlation between sentiment and price
-async function analyzeCorrelation() {
-  const correlation = await analyzer.analyzeSentimentPriceCorrelation('ethereum', {
-    timeframe: '90d',
-    interval: '1d'
-  });
-  
-  console.log('Sentiment-price correlation:', correlation.coefficient);
-  console.log('Lag effect (days):', correlation.lag);
-  console.log('Significance:', correlation.significance);
-}
+Agents communicate via standardized protocols, enabling composition of complex strategies from simpler building blocks. This modular design allows for continuous improvement and customization without disrupting the overall system.
 
-analyzeCorrelation();
-Configuration Options
-SentimentAnalyzer Constructor
+#### Model Context Protocols (MCPs)
 
-adapters: Object containing data adapters
-weights: Custom weights for different sentiment sources
-cache: Optional cache instance
-ttl: Cache TTL in milliseconds
+MCPs form the foundation of INTUE's intelligence capabilities. These specialized processing modules transform raw market data into contextually relevant signals through:
 
-Analysis Methods Options
+* **Category Classification**: Ecosystem and token categorization with specialized metrics
+* **Metric Processing**: Standardized calculation of key performance indicators
+* **Correlation Detection**: Identification of relationships between disparate data points
+* **Advanced Analysis**: Statistical processing using sophisticated mathematical models
 
-timeframe: Time window for analysis ('1d', '7d', '30d', etc.)
-sources: Data sources to include ('social', 'news', 'market')
-interval: Data resolution ('1h', '1d', '1w')
-limit: Number of assets to include in ecosystem analysis
+MCPs are composable, allowing agents to leverage multiple protocols simultaneously for enhanced signal detection and pattern recognition.
 
-Related Packages
+#### Trading Execution Framework
 
-@intue/core - Core utilities for the INTUE ecosystem
-@intue/lunarcrush-adapter - LunarCrush API adapter
+The execution layer provides standardized interfaces to multiple exchanges through adapter modules that handle:
 
-License
-MIT
+* **Order Management**: Precise execution with minimal slippage
+* **Position Tracking**: Real-time monitoring of active positions
+* **Risk Management**: Automated stop-loss, take-profit, and position sizing
+* **Exchange-Specific Optimizations**: Adapter-level specialization for each venue
+
+This framework ensures consistent behavior across different trading venues while optimizing for the unique characteristics of each exchange.
