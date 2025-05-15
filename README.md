@@ -1,50 +1,132 @@
-# INTUE Documentation
+## Analysis MCPs
+# Analysis MCPs
 
-![Screenshot 2025-05-14 at 5 43 58 PM](https://github.com/user-attachments/assets/5c8a5251-898a-4224-bb4a-30c01f03980d)
+Overview
 
-## INTUE Documentation
+Analysis Model Context Protocols (MCPs) apply advanced statistical and mathematical methods to market data, uncovering complex patterns and relationships beyond simple metrics and correlations.
 
-### Welcome to INTUE
 
-INTUE is the intelligence layer for autonomous trading agents, a comprehensive framework designed for quantitative analysis of cryptocurrency markets using advanced AI protocols and agent-based architecture.
+Available Analysis Protocols
 
-Our platform enables sophisticated signal detection, cross-ecosystem correlation analysis, and autonomous trade execution with unprecedented precision. By leveraging specialized Model Context Protocols (MCPs), INTUE bridges the gap between raw market data and actionable trading intelligence.
+Non-Linear Correlation MCP
+Implements advanced statistical methods for detecting complex, non-linear relationships:
 
-This documentation provides a comprehensive guide to the INTUE ecosystem, from high-level concepts to detailed technical specifications for developers, traders, and researchers looking to harness the power of autonomous trading intelligence.
+```
+const nonLinearMCP = new NonLinearCorrelationMCP({
+  assets: ['BTC', 'ETH', 'SOL', 'AVAX'],
+  methods: ['spearman', 'kendall-tau', 'mutual-information'],
+  significance: 0.95,
+  windowSize: '30d'
+});
 
-Whether you're implementing an existing agent, developing custom MCPs, or creating entirely new agents for the marketplace, this documentation will serve as your definitive resource for working with the INTUE platform.\
-\
-Core Concepts
+const nonLinearRelationships = await nonLinearMCP.process();
+// Returns: Non-linear relationship metrics
+```
 
-#### Agent Architecture
+Key capabilities:
+* Rank correlation analysis
+* Mutual information calculation
+* Non-parametric relationship detection
+* Power law relationship identification
 
-INTUE agents are autonomous, specialized intelligence modules designed to perform specific market analysis functions. Each agent implements a modular architecture consisting of:
+Multi-Factor Correlation MCP
+Combines multiple metrics into composite factors for higher-level analysis:
 
-* **Signal Generators**: Specialized algorithms for pattern detection across market data
-* **Decision Engine**: Processing pipeline for signal evaluation and action determination
-* **Execution Framework**: Interface layer for trade execution and position management
-* **Performance Analytics**: Self-evaluation and optimization mechanisms
+```
+const multiFactorMCP = new MultiFactorCorrelationMCP({
+  factors: [
+    {
+      name: 'momentum',
+      metrics: ['price-change', 'volume-change', 'social-sentiment']
+    },
+    {
+      name: 'fundamentals',
+      metrics: ['active-addresses', 'transaction-value', 'fees']
+    },
+    {
+      name: 'risk',
+      metrics: ['volatility', 'liquidity', 'drawdown']
+    }
+  ],
+  normalization: 'z-score',
+  dimensionReduction: 'pca'
+});
 
-Agents communicate via standardized protocols, enabling composition of complex strategies from simpler building blocks. This modular design allows for continuous improvement and customization without disrupting the overall system.
+const factorAnalysis = await multiFactorMCP.process();
+// Returns: Factor analysis with principal components
+```
+Key capabilities:
 
-#### Model Context Protocols (MCPs)
+* Composite factor construction
+* Principal component analysis
+* Factor significance testing
+* Cross-factor correlation analysis
 
-MCPs form the foundation of INTUE's intelligence capabilities. These specialized processing modules transform raw market data into contextually relevant signals through:
+Pattern Recognition MCP
+Identifies recurring market patterns and historical precedents:
+```
+const patternMCP = new PatternRecognitionMCP({
+  patterns: ['head-and-shoulders', 'double-bottom', 'bull-flag', 'wyckoff-accumulation'],
+  timeframes: ['1h', '4h', '1d'],
+  minimumConfidence: 0.75,
+  includeHiddenPatterns: true
+});
 
-* **Category Classification**: Ecosystem and token categorization with specialized metrics
-* **Metric Processing**: Standardized calculation of key performance indicators
-* **Correlation Detection**: Identification of relationships between disparate data points
-* **Advanced Analysis**: Statistical processing using sophisticated mathematical models
+const detectedPatterns = await patternMCP.process();
+// Returns: Identified patterns with confidence metrics
+```
 
-MCPs are composable, allowing agents to leverage multiple protocols simultaneously for enhanced signal detection and pattern recognition.
+Key capabilities:
 
-#### Trading Execution Framework
+* Technical pattern recognition
+* Pattern completion projection
+* Historical success rate analysis
+* Multi-timeframe confirmation
+* Causality Analysis MCP
+* Goes beyond correlation to analyze potential causal relationships:
 
-The execution layer provides standardized interfaces to multiple exchanges through adapter modules that handle:
+```
+const causalityMCP = new CausalityAnalysisMCP({
+  variables: ['btc-price', 'eth-price', 'defi-tvl', 'market-sentiment'],
+  method: 'granger',
+  maxLag: 10,
+  significance: 0.95
+});
 
-* **Order Management**: Precise execution with minimal slippage
-* **Position Tracking**: Real-time monitoring of active positions
-* **Risk Management**: Automated stop-loss, take-profit, and position sizing
-* **Exchange-Specific Optimizations**: Adapter-level specialization for each venue
+const causalRelationships = await causalityMCP.process();
+// Returns: Causal relationship graph with confidence metrics
+```
 
-This framework ensures consistent behavior across different trading venues while optimizing for the unique characteristics of each exchange.
+Key capabilities:
+* Granger causality testing
+* Causal graph construction
+* Driver/follower classification
+* Intervention analysis
+
+ 
+Additional Analysis MCPs
+
+* Time Series Forecasting MCP: Implements predictive models for time series data
+* Regime Change Detection MCP: Identifies market phase transitions
+* Attribution Analysis MCP: Performs factor performance breakdown
+* Risk Decomposition MCP: Analyzes multiple sources of market risk
+* Structural Break Detection MCP: Identifies fundamental changes in market behavior
+
+Integration Example
+```
+// Advanced analytical pipeline
+const advancedAnalysisMCP = new AnalysisPipelineMCP({
+  stages: [
+    new AnomalyDetectionMCP({ /* config */ }),
+    new NonLinearCorrelationMCP({ /* config */ }),
+    new CausalityAnalysisMCP({ /* config */ })
+  ],
+  feedbackLoops: true,
+  persistIntermediateResults: true
+});
+
+const analysisResults = await advancedAnalysisMCP.process();
+// Returns: Multi-stage analytical results
+```
+
+This pipeline approach enables sophisticated analytical workflows through the sequential application of specialized analysis protocols.
