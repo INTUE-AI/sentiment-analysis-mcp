@@ -1,132 +1,112 @@
-## Analysis MCPs
-# Analysis MCPs
+# INTUE Sentiment Analysis MCP
 
-Overview
+A sophisticated Model Context Protocol (MCP) for analyzing crypto asset sentiment across social, news, and market data sources.
 
-Analysis Model Context Protocols (MCPs) apply advanced statistical and mathematical methods to market data, uncovering complex patterns and relationships beyond simple metrics and correlations.
+## Overview
 
+The Sentiment Analysis MCP integrates multiple data streams to provide a comprehensive view of sentiment across the crypto ecosystem. By processing social media signals, news coverage, and on-chain metrics, this MCP delivers deep insights into market sentiment at both asset-specific and ecosystem-wide levels.
 
-Available Analysis Protocols
+## Installation
 
-Non-Linear Correlation MCP
-Implements advanced statistical methods for detecting complex, non-linear relationships:
-
+```bash
+npm install @intue/sentiment-analysis-mcp
 ```
-const nonLinearMCP = new NonLinearCorrelationMCP({
-  assets: ['BTC', 'ETH', 'SOL', 'AVAX'],
-  methods: ['spearman', 'kendall-tau', 'mutual-information'],
-  significance: 0.95,
-  windowSize: '30d'
+
+## Features
+
+- Multi-Source Analysis: Combines data from social media, news outlets, and market behavior
+- Ecosystem Categorization: Maps sentiment across defined crypto ecosystems
+- Temporal Patterns: Detects sentiment shifts over time with configurable time windows
+- Sentiment Correlation: Identifies correlations between sentiment and price action
+- Anomaly Detection: Flags unusual sentiment patterns that may indicate market movements
+- Customizable Weights: Configure the importance of different sentiment signals
+
+## Usage
+
+### Basic Sentiment Analysis
+
+```javascript
+const { SentimentAnalyzer } = require('@intue/sentiment-analysis-mcp');
+const LunarCrushAdapter = require('@intue/lunarcrush-adapter');
+
+// Initialize with adapters
+const lunarcrush = new LunarCrushAdapter({ apiKey: 'YOUR_API_KEY' });
+const analyzer = new SentimentAnalyzer({
+  adapters: { lunarcrush }
 });
 
-const nonLinearRelationships = await nonLinearMCP.process();
-// Returns: Non-linear relationship metrics
+// Analyze a specific asset
+async function analyzeBitcoin() {
+  const btcSentiment = await analyzer.analyzeSentiment('bitcoin', { 
+    timeframe: '7d',
+    sources: ['social', 'news']
+  });
+  
+  console.log('Bitcoin sentiment score:', btcSentiment.score);
+  console.log('Sentiment breakdown:', btcSentiment.breakdown);
+  console.log('Sentiment trend:', btcSentiment.trend);
+}
+
+analyzeBitcoin();
 ```
 
-Key capabilities:
-* Rank correlation analysis
-* Mutual information calculation
-* Non-parametric relationship detection
-* Power law relationship identification
+### Ecosystem Sentiment Analysis
 
-Multi-Factor Correlation MCP
-Combines multiple metrics into composite factors for higher-level analysis:
+```javascript
+// Analyze sentiment across an ecosystem
+async function analyzeAIEcosystem() {
+  const aiEcosystemSentiment = await analyzer.analyzeEcosystemSentiment('ai-agents', {
+    timeframe: '30d',
+    limit: 10 // Top 10 assets in ecosystem
+  });
+  
+  console.log('AI Ecosystem Sentiment:', aiEcosystemSentiment.score);
+  console.log('Leading assets by sentiment:', aiEcosystemSentiment.topAssets);
+  console.log('Sentiment trend:', aiEcosystemSentiment.trend);
+}
 
-```
-const multiFactorMCP = new MultiFactorCorrelationMCP({
-  factors: [
-    {
-      name: 'momentum',
-      metrics: ['price-change', 'volume-change', 'social-sentiment']
-    },
-    {
-      name: 'fundamentals',
-      metrics: ['active-addresses', 'transaction-value', 'fees']
-    },
-    {
-      name: 'risk',
-      metrics: ['volatility', 'liquidity', 'drawdown']
-    }
-  ],
-  normalization: 'z-score',
-  dimensionReduction: 'pca'
-});
-
-const factorAnalysis = await multiFactorMCP.process();
-// Returns: Factor analysis with principal components
-```
-Key capabilities:
-
-* Composite factor construction
-* Principal component analysis
-* Factor significance testing
-* Cross-factor correlation analysis
-
-Pattern Recognition MCP
-Identifies recurring market patterns and historical precedents:
-```
-const patternMCP = new PatternRecognitionMCP({
-  patterns: ['head-and-shoulders', 'double-bottom', 'bull-flag', 'wyckoff-accumulation'],
-  timeframes: ['1h', '4h', '1d'],
-  minimumConfidence: 0.75,
-  includeHiddenPatterns: true
-});
-
-const detectedPatterns = await patternMCP.process();
-// Returns: Identified patterns with confidence metrics
+analyzeAIEcosystem();
 ```
 
-Key capabilities:
+### Sentiment vs. Price Correlation
 
-* Technical pattern recognition
-* Pattern completion projection
-* Historical success rate analysis
-* Multi-timeframe confirmation
-* Causality Analysis MCP
-* Goes beyond correlation to analyze potential causal relationships:
+```javascript
+// Analyze correlation between sentiment and price
+async function analyzeCorrelation() {
+  const correlation = await analyzer.analyzeSentimentPriceCorrelation('ethereum', {
+    timeframe: '90d',
+    interval: '1d'
+  });
+  
+  console.log('Sentiment-price correlation:', correlation.coefficient);
+  console.log('Lag effect (days):', correlation.lag);
+  console.log('Significance:', correlation.significance);
+}
 
-```
-const causalityMCP = new CausalityAnalysisMCP({
-  variables: ['btc-price', 'eth-price', 'defi-tvl', 'market-sentiment'],
-  method: 'granger',
-  maxLag: 10,
-  significance: 0.95
-});
-
-const causalRelationships = await causalityMCP.process();
-// Returns: Causal relationship graph with confidence metrics
+analyzeCorrelation();
 ```
 
-Key capabilities:
-* Granger causality testing
-* Causal graph construction
-* Driver/follower classification
-* Intervention analysis
+## Configuration Options
 
- 
-Additional Analysis MCPs
+### SentimentAnalyzer Constructor
 
-* Time Series Forecasting MCP: Implements predictive models for time series data
-* Regime Change Detection MCP: Identifies market phase transitions
-* Attribution Analysis MCP: Performs factor performance breakdown
-* Risk Decomposition MCP: Analyzes multiple sources of market risk
-* Structural Break Detection MCP: Identifies fundamental changes in market behavior
+- `adapters`: Object containing data adapters
+- `weights`: Custom weights for different sentiment sources
+- `cache`: Optional cache instance
+- `ttl`: Cache TTL in milliseconds
 
-Integration Example
-```
-// Advanced analytical pipeline
-const advancedAnalysisMCP = new AnalysisPipelineMCP({
-  stages: [
-    new AnomalyDetectionMCP({ /* config */ }),
-    new NonLinearCorrelationMCP({ /* config */ }),
-    new CausalityAnalysisMCP({ /* config */ })
-  ],
-  feedbackLoops: true,
-  persistIntermediateResults: true
-});
+### Analysis Methods Options
 
-const analysisResults = await advancedAnalysisMCP.process();
-// Returns: Multi-stage analytical results
-```
+- `timeframe`: Time window for analysis ('1d', '7d', '30d', etc.)
+- `sources`: Data sources to include ('social', 'news', 'market')
+- `interval`: Data resolution ('1h', '1d', '1w')
+- `limit`: Number of assets to include in ecosystem analysis
 
-This pipeline approach enables sophisticated analytical workflows through the sequential application of specialized analysis protocols.
+## Related Packages
+
+- `@intue/core` - Core utilities for the INTUE ecosystem
+- `@intue/lunarcrush-adapter` - LunarCrush API adapter
+
+## License
+
+MIT
