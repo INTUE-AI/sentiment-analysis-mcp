@@ -6,7 +6,7 @@
 
 The Binance Adapter provides a standardized interface to Binance's exchange functionality, enabling INTUE agents to execute trades, manage positions, and access market data with minimal latency.
 
-```javascript
+```python
 const binanceAdapter = new BinanceAdapter({
   apiKey: 'YOUR_API_KEY',
   secretKey: 'YOUR_SECRET_KEY',
@@ -27,7 +27,7 @@ const binanceAdapter = new BinanceAdapter({
 
 #### Authentication
 
-```javascript
+```python
 // Initialize with API credentials
 const binance = new BinanceAdapter({
   apiKey: process.env.BINANCE_API_KEY,
@@ -46,7 +46,7 @@ console.log(`Server time: ${new Date(serverTime).toISOString()}`);
 
 The adapter supports both production and testnet environments:
 
-```javascript
+```python
 // For testnet (paper trading)
 const testBinance = new BinanceAdapter({
   apiKey: process.env.BINANCE_TESTNET_API_KEY,
@@ -59,7 +59,7 @@ const testBinance = new BinanceAdapter({
 
 #### Market Data
 
-```javascript
+```python
 // Get current price
 const price = await binanceAdapter.getCurrentPrice('BTCUSDT');
 
@@ -76,7 +76,7 @@ const candles = await binanceAdapter.getCandles({
 
 #### Account Management
 
-```javascript
+```python
 // Get account balances
 const account = await binanceAdapter.getAccountInfo();
 
@@ -94,7 +94,7 @@ const transfer = await binanceAdapter.transferBetweenWallets({
 
 #### Order Execution
 
-```javascript
+```python
 // Place a spot market order
 const marketOrder = await binanceAdapter.placeOrder({
   symbol: 'BTCUSDT',
@@ -130,7 +130,7 @@ const futuresOrder = await binanceAdapter.placeFuturesOrder({
 
 #### Position Management
 
-```javascript
+```python
 // Get open orders
 const openOrders = await binanceAdapter.getOpenOrders('BTCUSDT');
 
@@ -152,7 +152,7 @@ const closeResult = await binanceAdapter.closePosition({
 
 #### Risk Management
 
-```javascript
+```python
 // Set stop loss and take profit for spot
 const oco = await binanceAdapter.placeOCOOrder({
   symbol: 'BTCUSDT',
@@ -176,7 +176,7 @@ const stopLoss = await binanceAdapter.placeFuturesOrder({
 
 ### Real-time Data Streaming
 
-```javascript
+```python
 // Subscribe to price updates
 binanceAdapter.listenPriceUpdates('BTCUSDT', (priceUpdate) => {
   console.log(`New price for BTC: ${priceUpdate.price}`);
@@ -200,7 +200,7 @@ binanceAdapter.listenUserData({
 
 The adapter implements comprehensive error handling, including automatic retries for transient errors and detailed error information:
 
-```javascript
+```python
 try {
   const order = await binanceAdapter.placeOrder({
     symbol: 'BTCUSDT',

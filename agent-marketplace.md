@@ -46,40 +46,40 @@ To submit an agent to the marketplace:
 
 All marketplace agents must meet these requirements:\
 \
-`// Required interfaces`\
-`interface MarketplaceAgent {`\
-`// Core functionality`\
-`initialize(config: AgentConfig): Promise;`\
-`process(data: MarketData): Promise;`\
-`getMetadata(): AgentMetadata;`\
-`// Technical requirements continued`\
-`interface MarketplaceAgent {`\
-`// Documentation`\
-`getDocumentation(): AgentDocumentation;`
+// Required interfaces\
+interface MarketplaceAgent {\
+// Core functionality\
+initialize(config: AgentConfig): Promise;\
+process(data: MarketData): Promise;\
+getMetadata(): AgentMetadata;\
+// Technical requirements continued\
+interface MarketplaceAgent {\
+// Documentation\
+getDocumentation(): AgentDocumentation;
 
-`// Performance metrics`\
-`getPerformanceMetrics(): PerformanceMetrics;`
+// Performance metrics\
+getPerformanceMetrics(): PerformanceMetrics;
 
-`// Security compliance`\
-`validateSecurity(): SecurityValidation;`
+// Security compliance\
+validateSecurity(): SecurityValidation;
 
-`// Resource requirements`\
-`getResourceRequirements(): ResourceRequirements;`\
-`}`
+// Resource requirements\
+getResourceRequirements(): ResourceRequirements;\
+}
 
-`// All agents must implement proper error handling`\
-`try {`\
-`// Agent processing`\
-`} catch (error) {`\
-`// Log and handle error appropriately`\
-`logger.error(Processing error: ${error.message}, {`\
-`stack: error.stack,`\
-`context: currentContext`\
-`});`
+// All agents must implement proper error handling\
+try {\
+// Agent processing\
+} catch (error) {\
+// Log and handle error appropriately\
+logger.error(Processing error: ${error.message}, {\
+stack: error.stack,\
+context: currentContext\
+});
 
-`// Implement graceful degradation`\
-`return fallbackResponse();`\
-`}`\
+// Implement graceful degradation\
+return fallbackResponse();\
+}\
 \
 
 
@@ -145,7 +145,63 @@ Users can deploy marketplace agents in multiple ways:
        #### Integration Code
 
        ```javascript
-       javascript// Integrate a marketplace agent into your trading systemimport { MarketplaceSDK } from '@intue/marketplace';import { BinanceAdapter } from '@intue/exchange-adapters';async function deployMarketplaceAgent() {  // Initialize marketplace SDK  const marketplace = new MarketplaceSDK({    apiKey: process.env.INTUE_API_KEY  });    // Find and retrieve agent  const availableAgents = await marketplace.searchAgents({    category: 'momentum',    minPerformance: {      sharpeRatio: 1.5,      maxDrawdown: -0.25  // 25% max drawdown    },    ecosystem: 'defi'  });    // Select and deploy agent  const selectedAgent = availableAgents[0];  const deployedAgent = await marketplace.deployAgent({    agentId: selectedAgent.id,    version: 'latest',    configuration: {      sensitivity: 0.75,      timeframes: ['1h', '4h', '1d']    },    deploymentType: 'cloud'  });    // Configure exchange integration  const exchange = new BinanceAdapter({    apiKey: process.env.BINANCE_API_KEY,    secretKey: process.env.BINANCE_SECRET_KEY  });    // Connect exchange to agent  await deployedAgent.connectExchange(exchange);    // Subscribe to agent signals  deployedAgent.onSignal(async (signal) => {    console.log('Received signal:', signal);        // Execute trade based on signal    if (signal.confidence > 0.8) {      const tradeResult = await deployedAgent.executeTrade(signal);      console.log('Trade executed:', tradeResult);    }  });    // Start the agent  await deployedAgent.start();    return deployedAgent;}
+       // Integrate a marketplace agent into your trading system
+       import { MarketplaceSDK } from '@intue/marketplace';
+       import { BinanceAdapter } from '@intue/exchange-adapters';
+
+       async function deployMarketplaceAgent() {
+         // Initialize marketplace SDK
+         const marketplace = new MarketplaceSDK({
+           apiKey: process.env.INTUE_API_KEY
+         });
+         
+         // Find and retrieve agent
+         const availableAgents = await marketplace.searchAgents({
+           category: 'momentum',
+           minPerformance: {
+             sharpeRatio: 1.5,
+             maxDrawdown: -0.25  // 25% max drawdown
+           },
+           ecosystem: 'defi'
+         });
+         
+         // Select and deploy agent
+         const selectedAgent = availableAgents[0];
+         const deployedAgent = await marketplace.deployAgent({
+           agentId: selectedAgent.id,
+           version: 'latest',
+           configuration: {
+             sensitivity: 0.75,
+             timeframes: ['1h', '4h', '1d']
+           },
+           deploymentType: 'cloud'
+         });
+         
+         // Configure exchange integration
+         const exchange = new BinanceAdapter({
+           apiKey: process.env.BINANCE_API_KEY,
+           secretKey: process.env.BINANCE_SECRET_KEY
+         });
+         
+         // Connect exchange to agent
+         await deployedAgent.connectExchange(exchange);
+         
+         // Subscribe to agent signals
+         deployedAgent.onSignal(async (signal) => {
+           console.log('Received signal:', signal);
+           
+           // Execute trade based on signal
+           if (signal.confidence > 0.8) {
+             const tradeResult = await deployedAgent.executeTrade(signal);
+             console.log('Trade executed:', tradeResult);
+           }
+         });
+         
+         // Start the agent
+         await deployedAgent.start();
+         
+         return deployedAgent;
+       }
        ```
 
 ### Analytics and Monitoring

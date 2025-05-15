@@ -6,7 +6,7 @@
 
 The Hyperliquid Adapter provides a standardized interface to Hyperliquid's perpetual futures exchange, enabling INTUE agents to execute trades, manage perpetual positions, and access market data with minimal latency.
 
-```javascript
+```python
 const hyperliquidAdapter = new HyperliquidAdapter({
   apiKey: 'YOUR_API_KEY',
   secretKey: 'YOUR_SECRET_KEY',
@@ -26,7 +26,7 @@ const hyperliquidAdapter = new HyperliquidAdapter({
 
 #### Authentication
 
-```javascript
+```python
 // Initialize with API credentials
 const hyperliquid = new HyperliquidAdapter({
   apiKey: process.env.HYPERLIQUID_API_KEY,
@@ -43,7 +43,7 @@ console.log(`Connected to Hyperliquid: ${status.connected}`);
 
 The adapter supports both mainnet and testnet environments:
 
-```javascript
+```python
 // For testnet (paper trading)
 const testHyperliquid = new HyperliquidAdapter({
   apiKey: process.env.HYPERLIQUID_TESTNET_API_KEY,
@@ -56,7 +56,7 @@ const testHyperliquid = new HyperliquidAdapter({
 
 #### Market Data
 
-```javascript
+```python
 // Get available markets
 const markets = await hyperliquidAdapter.getMarkets();
 
@@ -72,7 +72,7 @@ const fundingRates = await hyperliquidAdapter.getFundingRates();
 
 #### Account Management
 
-```javascript
+```python
 // Get account information
 const account = await hyperliquidAdapter.getAccountInfo();
 
@@ -88,7 +88,7 @@ const newLeverage = await hyperliquidAdapter.setLeverage(10);  // 10x
 
 #### Position Management
 
-```javascript
+```python
 // Get open positions
 const positions = await hyperliquidAdapter.getPositions();
 
@@ -98,7 +98,7 @@ const ethPosition = await hyperliquidAdapter.getPosition('ETH-PERP');
 
 #### Order Execution
 
-```javascript
+```python
 // Execute perpetual trade
 const perpetualOrder = await hyperliquidAdapter.executePerpetrualTrade({
   symbol: 'BTC-PERP',
@@ -141,7 +141,7 @@ const takeProfit = await hyperliquidAdapter.placeOrder({
 
 #### Order Management
 
-```javascript
+```python
 // Get open orders
 const openOrders = await hyperliquidAdapter.getOpenOrders();
 
@@ -164,7 +164,7 @@ const modifyResult = await hyperliquidAdapter.modifyOrder({
 
 #### Risk Management
 
-```javascript
+```python
 // Close position
 const closeResult = await hyperliquidAdapter.closePosition({
   symbol: 'BTC-PERP',
@@ -183,7 +183,7 @@ await hyperliquidAdapter.setLiquidationPriceAlert({
 
 #### Advanced Order Types
 
-```javascript
+```python
 // Trigger order with callback
 const callbackOrder = await hyperliquidAdapter.placeTriggerOrder({
   symbol: 'BTC-PERP',
@@ -206,7 +206,7 @@ const ocoOrder = await hyperliquidAdapter.placeOCOOrder({
 
 ### Real-time Data Streaming
 
-```javascript
+```python
 // Subscribe to price updates
 hyperliquidAdapter.listenPriceUpdates('BTC-PERP', (priceUpdate) => {
   console.log(`New price for BTC: ${priceUpdate.price}`);
@@ -233,7 +233,7 @@ hyperliquidAdapter.listenUserData({
 
 ### Performance Optimization
 
-```javascript
+```python
 // Configure connection settings for high-frequency trading
 hyperliquidAdapter.configureTradingMode({
   priority: 'SPEED',  // SPEED, RELIABILITY, BALANCED
@@ -257,7 +257,7 @@ hyperliquidAdapter.setExecutionParameters({
 
 The adapter implements comprehensive error handling with specialized treatment for different error types:
 
-```javascript
+```python
 try {
   const order = await hyperliquidAdapter.executePerpetrualTrade({
     symbol: 'BTC-PERP',
@@ -286,6 +286,3 @@ The adapter maintains internal performance metrics:
 * Order success rate: 99.5%
 * WebSocket reconnection rate: <0.02%
 * Position update latency: 115ms (average)
-
-```
-```

@@ -58,6 +58,3 @@ Implement comprehensive monitoring systems:
     ```
 
 These best practices will help ensure reliable, maintainable, and high-performance INTUE implementations.
-
-```
-```
