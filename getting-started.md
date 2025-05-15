@@ -13,7 +13,7 @@ coverY: 0
 
 ### Installation
 
-INTUE can be installed directly via npm:
+INTUE can be installed directly via npm
 
 ```bash
 # Install the package
