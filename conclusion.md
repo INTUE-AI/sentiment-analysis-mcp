@@ -51,14 +51,14 @@ INTUE will continue to evolve with several exciting developments on the horizon:
 We invite you to explore the transformative potential of INTUE:
 
 1. **For Traders**
-   * Create an account at [intue.io](https://intue.io)
+   * Register for an account at [https://intue.xyz/register](https://intue.xyz/register)
    * Explore ready-to-use agents in the marketplace
    * Configure and customize strategies for your trading needs
 2. **For Developers**
-   * Access the development SDK at [dev.intue.io](https://dev.intue.io)
+   * Access the development SDK at [https://github.com/INTUE-AI?tab=repositories](https://github.com/INTUE-AI?tab=repositories)
    * Build custom MCPs and agents using our comprehensive documentation
    * Contribute to our growing ecosystem of trading intelligence
 3. **For Enterprises**
-   * Schedule a consultation for enterprise solutions at [enterprise.intue.io](https://enterprise.intue.io)
+   * Schedule a consultation for enterprise solutions at via email enterprise@intue.xyz
    * Explore custom integration options for institutional trading
    * Leverage our high-performance infrastructure for large-scale deployment
